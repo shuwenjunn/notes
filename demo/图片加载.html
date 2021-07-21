@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>大图片加载从模糊到清晰</title>
+    <style type="text/css">
+        .content {
+            position: relative;
+        }
+
+        .thumbnails {
+            width: 300px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            filter: blur(4px);
+            transition: all 0.2s;
+        }
+
+        .complete {
+            filter: blur(0);
+        }
+    </style>
+</head>
+
+<body>
+    <h3>大图片加载从模糊到清晰</h3>
+    <div class="content">
+        <img 
+            class="thumbnails"
+            src='https://cdn.chime.me/image/fs/user-info/20201221/19/w208_original_9242c81f-dee9-414a-a5d2-49f859a6fbfe.png' />
+    </div>
+    <script type="text/javascript">
+        var ele = document.querySelector('.thumbnails');
+        // 为了看到效果加个延时
+        setTimeout(function () {
+            // 若图片URL失效请自行替换
+            var imgUrl = 'https://cdn.chime.me/image/fs/user-info/20201221/19/w624_original_9242c81f-dee9-414a-a5d2-49f859a6fbfe.png';
+            var imgObject = new Image();
+
+            imgObject.src = imgUrl;
+            imgObject.onload = function () {
+                ele.src = imgUrl;
+                ele.setAttribute('class', 'thumbnails complete');
+            }
+        }, 1000)
+    </script>
+    </script>
+</body>
+
+</html>
